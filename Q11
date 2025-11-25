@@ -1,0 +1,47 @@
+// ---------- PART 1: Category Counting + Sorting ----------
+
+const categories = ["electronics", "clothing", "electronics", "toys", "clothing", "toys", "toys"];
+
+// 1. Use reduce() to count occurrences
+const categoryCount = categories.reduce((acc, category) => {
+  acc[category] = (acc[category] || 0) + 1;
+  return acc;
+}, {});
+
+console.log("Category Count:", categoryCount);
+
+// 2. Extra Challenge: Sort categories by count (descending)
+const sortedCategories = Object.entries(categoryCount)
+  .sort((a, b) => b[1] - a[1])
+  .map(entry => entry[0]);
+
+console.log("Sorted Categories:", sortedCategories);
+
+
+// ---------- PART 2: processProducts() using map() + forEach() ----------
+
+function processProducts(products) {
+  // Use map() → extract product names
+  const productNames = products.map(product => product.name);
+
+  // Use forEach() → log based on price
+  products.forEach(product => {
+    if (product.price > 50) {
+      console.log(`${product.name} is above $50`);
+    } else {
+      console.log(`${product.name} is below $50`);
+    }
+  });
+
+  return productNames;
+}
+
+// Example Input
+const products = [
+  { name: "Laptop", price: 1000 },
+  { name: "Mouse", price: 20 }
+];
+
+// Call the function
+const names = processProducts(products);
+console.log("Product Names:", names);
