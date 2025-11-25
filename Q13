@@ -1,0 +1,21 @@
+const countCategories = categories =>
+  categories.reduce((acc, category) => {
+    acc[category] = (acc[category] || 0) + 1;
+    return acc;
+  }, {});
+const sortCategoriesByCount = categories =>
+  Object.entries(
+    categories.reduce((acc, category) => {
+      acc[category] = (acc[category] || 0) + 1;
+      return acc;
+    }, {})
+  )
+    .sort((a, b) => b[1] - a[1])   // sort by count (descending)
+    .map(([category]) => category); // return only category names
+const input = ["electronics", "clothing", "electronics", "toys", "clothing", "toys", "toys"];
+
+console.log(countCategories(input));
+// { electronics: 2, clothing: 2, toys: 3 }
+
+console.log(sortCategoriesByCount(input));
+// ["toys", "electronics", "clothing"]
